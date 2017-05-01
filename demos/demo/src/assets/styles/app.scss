@@ -1,0 +1,19 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+//$mdc-theme-primary: #607D8B;
+// $mdc-theme-accent: #f06292;
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+
+@import '@material/theme/mdc-theme';
+@import '@material/typography/mdc-typography';
+@import '@material/button/mdc-button';
+
+.mdc-theme--dark {
+  background-color: #303030;
+}
