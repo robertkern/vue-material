@@ -1,17 +1,19 @@
-# VueJS Material Design Components
+# Material Design Components for Vue
 
-`vue-mdc` is a work-in-progress to add VueJS binding to the [material-components-web](https://github.com/material-components/material-components-web) library.
+`vue-material-components` is very much a work-in-progress implementation of the  [material-components-web](https://github.com/material-components/material-components-web) library as Vue components.
+
+> Please don't expect this to work for you just yet :-)
 
 # Demo
 
-To try out the simple demo, do the following:
+To try out the demo, do the following:
 
 ```
-$ cd vue-mdc
+$ cd vue-material-components
 $ npm install -g lerna # Skip this if lerna is already installed
 $ npm install
 $ lerna bootstrap
-$ cd demos/simple-demo
+$ cd demos/demo
 $ npm run dev
 ```
 
@@ -27,9 +29,9 @@ I haven't checked with the `lerna bootstrap` command using the current config, b
 works using `npm link`. In the `./` folder run `npm link`, then from `/demos/demo` run `npm link vue-material-components`
 
 # Docker
-Build: `docker build -t robertkern/vue-mdc .`  
-Run: `docker run -d --rm -p 8082:8080 robertkern/vue-mdc`  
-Run and enter to bash: `docker run -it --rm --entrypoint bash -p 8080:8082 robertkern/vue-mdc`
+Build: `docker build -t robertkern/vue-material-components .`  
+Run: `docker run -d --rm -p 8082:8080 robertkern/vue-material-components`  
+Run and enter to bash: `docker run -it --rm --entrypoint bash -p 8080:8082 robertkern/vue-material-components`
 
 # Dev
 `./dev.sh`  
