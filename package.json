@@ -1,6 +1,6 @@
 {
-  "name": "vue-material-components",
-  "version": "0.0.1",
+  "name": "@robertkern/vue-material",
+  "version": "0.0.1-alpha.1",
   "description": "Material Design Components for Vue",
   "keywords": [
     "vue",
@@ -69,10 +69,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/robertkern/vue-material-components.git"
+    "url": "git+ssh://github.com/robertkern/vue-material.git"
   },
   "bugs": {
-    "url": "https://github.com/robertkern/vue-material-components/issues"
+    "url": "https://github.com/robertkern/vue-material/issues"
   },
-  "homepage": "https://github.com/robertkern/vue-material-components#readme"
+  "homepage": "https://github.com/robertkern/vue-material#readme"
 }
