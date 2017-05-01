@@ -5,11 +5,11 @@ export default {
   name: 'mdc-ripple',
   bind (el, binding, vnode, oldVnode) {
     if (!binding.modifiers.custom) {
-      el.classList.add('mdc-ripple-surface');
+      el.classList.add('mdc-ripple-surface')
     }
 
     el.mdcRipple = MDCRipple.attachTo(el, {
-      isUnbounded: (typeof binding.modifiers.unbounded !== undefined) ? binding.modifiers.unbounded : false
+      isUnbounded: (typeof binding.modifiers.unbounded !== 'undefined') ? binding.modifiers.unbounded : false
     })
   },
   unbind (el, binding, vnode, oldVnode) {

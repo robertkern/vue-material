@@ -29,9 +29,9 @@ I haven't checked with the `lerna bootstrap` command using the current config, b
 works using `npm link`. In the `./` folder run `npm link`, then from `/demos/demo` run `npm link @robertkern/vue-material`
 
 # Docker
-Build: `docker build -t @robertkern/vue-material .`  
-Run: `docker run -d --rm -p 8082:8080 @robertkern/vue-material`  
-Run and enter to bash: `docker run -it --rm --entrypoint bash -p 8080:8082 @robertkern/vue-material`
+Build: `docker build -t robertkern/vue-material .`  
+Run: `docker run -d --rm -p 8082:8080 robertkern/vue-material`  
+Run and enter to bash: `docker run -it --rm --entrypoint bash -p 8080:8082 robertkern/vue-material`
 
 # Dev
 `./dev.sh`  

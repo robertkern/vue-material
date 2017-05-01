@@ -1,5 +1,3 @@
-import MdcRipple from '../../../directives/ripple'
-
 export default {
   props: {
     tag: {
