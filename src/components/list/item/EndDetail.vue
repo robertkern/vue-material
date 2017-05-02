@@ -5,7 +5,7 @@ export default {
     tag: {
       type: String,
       default: 'div'
-    },
+    }
   },
   render (createElement) {
     let data = {

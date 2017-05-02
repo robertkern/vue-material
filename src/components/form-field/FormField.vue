@@ -23,7 +23,7 @@ export default {
   mounted () {
     let vm = this
 
-    this.foundation = new MDCFormFieldFoundation({
+    vm.foundation = new MDCFormFieldFoundation({
       registerInteractionHandler (type, handler) {
         // todo type
         // vm.interactionHandlers.push(handler)

@@ -24,7 +24,7 @@ export default {
     }
   },
   render (createElement) {
-    let vm  = this
+    let vm = this
     let data = {
       class: {
         'mdc-textfield__input': true

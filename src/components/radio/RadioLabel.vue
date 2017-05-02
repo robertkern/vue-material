@@ -9,7 +9,7 @@ export default {
   props: ['id', 'label', 'for'],
   computed: {
     labelFor () {
-      return this['for'];
+      return this['for']
     }
   }
 }

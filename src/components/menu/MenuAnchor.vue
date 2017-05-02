@@ -12,7 +12,7 @@ export default {
     let vm = this
     let data = {
       class: {
-        'mdc-menu-anchor': true,
+        'mdc-menu-anchor': true
       }
     }
 

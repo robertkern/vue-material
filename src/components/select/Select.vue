@@ -42,7 +42,7 @@ export default {
         vm.$set(vm.attrs, attr, value)
       },
       rmAttr (attr, value) {
-        vm.$delete(vm.attrs, className)
+        vm.$delete(vm.attrs, attr)
       },
       computeBoundingRect () {
         return vm.$el.getBoundingClientRect()

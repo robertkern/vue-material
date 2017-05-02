@@ -4,6 +4,13 @@
 
 > Please don't expect this to work for you just yet :-)
 
+```
+import VueMdc from '@robertkern/vue-material'
+import '@robertkern/vue-material.css'
+
+Vue.use(VueMdc)
+```
+
 # Demo
 
 To try out the demo, do the following:

@@ -1,10 +1,4 @@
 <script>
-export default {
-  name: 'mdc-temporary-drawer-nav'
-}
-</script>
-
-<script>
 import ListMixin from '../../list/mixins/list'
 
 export default {

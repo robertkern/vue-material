@@ -21,7 +21,7 @@ export default {
       classes: {},
       changeHandlers: [],
       foundation: null
-    };
+    }
   },
   mounted () {
     // const {FOCUSABLE_ELEMENTS, OPACITY_VAR_NAME} = MDCTemporaryDrawerFoundation.strings
@@ -30,62 +30,62 @@ export default {
 
     this.foundation = new MDCTemporaryDrawerFoundation({
       addClass (className) {
-        vm.$set(vm.classes, className, true);
+        vm.$set(vm.classes, className, true)
       },
       removeClass (className) {
-        vm.$delete(vm.classes, className);
+        vm.$delete(vm.classes, className)
       },
       hasClass (className) {
-        return Boolean(vm.classes[className]) || (vm.$el && vm.$el.classList.contains(className));
+        return Boolean(vm.classes[className]) || (vm.$el && vm.$el.classList.contains(className))
       },
       hasNecessaryDom () {
-        return Boolean(vm.$refs.drawer);
+        return Boolean(vm.$refs.drawer)
       },
       registerInteractionHandler (evt, handler) {
-        vm.$el.addEventListener(evt, handler);
+        vm.$el.addEventListener(evt, handler)
       },
       deregisterInteractionHandler (evt, handler) {
-        vm.$el.removeEventListener(evt, handler);
+        vm.$el.removeEventListener(evt, handler)
       },
       registerDrawerInteractionHandler (evt, handler) {
-        vm.$refs.drawer.addEventListener(evt, handler);
+        vm.$refs.drawer.addEventListener(evt, handler)
       },
       deregisterDrawerInteractionHandler (evt, handler) {
-        vm.$refs.drawer.removeEventListener(evt, handler);
+        vm.$refs.drawer.removeEventListener(evt, handler)
       },
       registerTransitionEndHandler (handler) {
-        vm.$refs.drawer.addEventListener('transitionend', handler);
+        vm.$refs.drawer.addEventListener('transitionend', handler)
       },
       deregisterTransitionEndHandler (handler) {
-        vm.$refs.drawer.removeEventListener('transitionend', handler);
+        vm.$refs.drawer.removeEventListener('transitionend', handler)
       },
       registerDocumentKeydownHandler (handler) {
-        document.addEventListener('keydown', handler);
+        document.addEventListener('keydown', handler)
       },
       deregisterDocumentKeydownHandler (handler) {
-        document.removeEventListener('keydown', handler);
+        document.removeEventListener('keydown', handler)
       },
       getDrawerWidth () {
-        return vm.$refs.drawer.clientWidth;
+        return vm.$refs.drawer.clientWidth
       },
       setTranslateX (value) {
         vm.$refs.drawer.style.setProperty(
           util.getTransformPropertyName(),
           value === null ? null : `translateX(${value}px)`
-        );
+        )
       },
       updateCssVariable (value) {
-        vm.$el.style.setProperty(OPACITY_VAR_NAME, value);
+        vm.$el.style.setProperty(OPACITY_VAR_NAME, value)
       },
       getFocusableElements () {
-        return vm.$refs.drawer.querySelectorAll(FOCUSABLE_ELEMENTS);
+        return vm.$refs.drawer.querySelectorAll(FOCUSABLE_ELEMENTS)
       },
       saveElementTabState: (el) => util.saveElementTabState(el),
       restoreElementTabState: (el) => util.restoreElementTabState(el),
       makeElementUntabbable: (el) => el.setAttribute('tabindex', -1),
       isRtl () {
         /* global getComputedStyle */
-        return getComputedStyle(vm.$el).getPropertyValue('direction') === 'rtl';
+        return getComputedStyle(vm.$el).getPropertyValue('direction') === 'rtl'
       }
     })
 

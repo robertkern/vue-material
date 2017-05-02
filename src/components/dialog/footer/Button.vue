@@ -60,7 +60,7 @@ export default {
       class: {
         'mdc-dialog__footer__button': true,
         'mdc-dialog__footer__button--cancel': this.cancel,
-        'mdc-dialog__footer__button--accept': this.accept,
+        'mdc-dialog__footer__button--accept': this.accept
       },
       props: {
         tag: this.tag,

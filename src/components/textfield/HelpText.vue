@@ -1,6 +1,4 @@
 <script>
-import { MDCTextfieldFoundation } from '@material/textfield'
-
 export default {
   name: 'mdc-textfield-helptext',
   props: {

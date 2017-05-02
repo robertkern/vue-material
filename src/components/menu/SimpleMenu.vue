@@ -3,18 +3,17 @@
 import { MDCSimpleMenuFoundation } from '@material/menu'
 import { getTransformPropertyName } from '@material/menu/util'
 
-function emit(el, evtType, evtData) {
-  let evt;
+function emit (el, evtType, evtData) {
+  let evt
   if (typeof CustomEvent === 'function') {
-    evt = new CustomEvent(evtType, {detail: evtData});
+    evt = new CustomEvent(evtType, {detail: evtData})
   } else {
-    evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(evtType, false, false, evtData);
+    evt = document.createEvent('CustomEvent')
+    evt.initCustomEvent(evtType, false, false, evtData)
   }
 
-  el.dispatchEvent(evt);
+  el.dispatchEvent(evt)
 }
-
 
 export default {
   name: 'mdc-simple-menu',
@@ -25,7 +24,7 @@ export default {
       },
       foundation: null,
       previousFocus: null
-    };
+    }
   },
   props: {
     tabindex: {
@@ -160,7 +159,7 @@ export default {
       getAccurateTime () {
         return window.performance.now()
       }
-    });
+    })
 
     this.foundation.init()
   },

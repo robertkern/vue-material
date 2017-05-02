@@ -1,6 +1,6 @@
 <script>
-import { MDCSnackbarFoundation } from '@material/snackbar';
-import { getCorrectEventName } from '@material/animation';
+import { MDCSnackbarFoundation } from '@material/snackbar'
+import { getCorrectEventName } from '@material/animation'
 
 export default {
   name: 'mdc-snackbar',
@@ -14,7 +14,7 @@ export default {
       // animHandlers: [],
       actionClickHandlers: [],
       foundation: null
-    };
+    }
   },
   mounted () {
     let vm = this

@@ -18,7 +18,7 @@
 </template>
 
 <script lang="babel">
-import { MDCRadioFoundation } from '@material/radio';
+import { MDCRadioFoundation } from '@material/radio'
 
 export default {
   name: 'mdc-radio',
@@ -42,46 +42,47 @@ export default {
     return {
       classes: {},
       foundation: null
-    };
+    }
   },
   mounted () {
     // TODO: Ripple!
-    let vm = this;
+    let vm = this
     this.foundation = new MDCRadioFoundation({
       addClass (className) {
-        vm.$set(vm.classes, className, true);
+        vm.$set(vm.classes, className, true)
       },
       removeClass (className) {
-        vm.$delete(vm.classes, className);
+        vm.$delete(vm.classes, className)
       },
       getNativeControl () {
-        return vm.$refs.native;
-      },
-    });
-    this.foundation.init();
-    this.foundation.setDisabled(this.disabled);
+        return vm.$refs.native
+      }
+    })
+
+    this.foundation.init()
+    this.foundation.setDisabled(this.disabled)
   },
   beforeUnmount () {
-    this.foundation.destroy();
+    this.foundation.destroy()
   },
   methods: {
     fireEvent (event) {
-      this.$emit('input', this.checkedProxy);
+      this.$emit('input', this.checkedProxy)
     }
   },
   watch: {
-    disabled(val) {
+    disabled (val) {
       if (this.foundation.isDisabled() === val) {
-        return;
+        return
       }
 
-      this.foundation.setDisabled(val);
+      this.foundation.setDisabled(val)
     }
   },
   computed: {
     checked: {
-      get() { return this.value; },
-      set (val) { this.checkedProxy = val; }
+      get () { return this.value },
+      set (val) { this.checkedProxy = val }
     }
   }
 }

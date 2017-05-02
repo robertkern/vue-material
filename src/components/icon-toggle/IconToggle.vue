@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { MDCIconToggleFoundation } from '@material/icon-toggle';
+import { MDCIconToggleFoundation } from '@material/icon-toggle'
 
 export default {
   name: 'mdc-icon-toggle',
@@ -19,79 +19,81 @@ export default {
       tabIndex: 0,
       text: '',
       foundation: null
-    };
+    }
   },
   mounted () {
     // TODO: add the ripple
-    let vm = this;
+    let vm = this
+
     this.foundation = new MDCIconToggleFoundation({
       addClass (className) {
-        vm.$set(vm.classes, className, true);
+        vm.$set(vm.classes, className, true)
       },
       removeClass (className) {
-        vm.$delete(vm.classes, className);
+        vm.$delete(vm.classes, className)
       },
       registerInteractionHandler (type, handler) {
-        vm.$el.addEventListener(type, handler);
+        vm.$el.addEventListener(type, handler)
       },
       deregisterInteractionHandler (type, handler) {
-        vm.$el.removeEventListener(type, handler);
+        vm.$el.removeEventListener(type, handler)
       },
       setText (text) {
-        vm.text = text;
+        vm.text = text
       },
       getTabIndex () {
-        return vm.tabIndex;
+        return vm.tabIndex
       },
       setTabIndex (tabIndex) {
-        vm.tabIndex = tabIndex;
+        vm.tabIndex = tabIndex
       },
       getAttr (name) {
-        return vm.$el.getAttribute(name);
+        return vm.$el.getAttribute(name)
       },
       setAttr (name, value) {
-        vm.$el.setAttribute(name, value);
+        vm.$el.setAttribute(name, value)
       },
       rmAttr (name) {
-        vm.$el.removeAttribute(name);
+        vm.$el.removeAttribute(name)
       },
       notifyChange (evtData) {
-        const evtType = 'MDCIconToggle:change';
-        let evt;
+        const evtType = 'MDCIconToggle:change'
+        let evt
         /* global CustomEvent */
         if (typeof CustomEvent === 'function') {
-          evt = new CustomEvent(evtType, {detail: evtData});
+          evt = new CustomEvent(evtType, {detail: evtData})
         } else {
-          evt = document.createEvent('CustomEvent');
-          evt.initCustomEvent(evtType, false, false, evtData);
+          evt = document.createEvent('CustomEvent')
+          evt.initCustomEvent(evtType, false, false, evtData)
         }
 
-        vm.$el.dispatchEvent(evt);
-        vm.$emit('input', evtData.isOn);
+        vm.$el.dispatchEvent(evt)
+        vm.$emit('input', evtData.isOn)
       }
-    });
-    this.foundation.init();
-    this.foundation.toggle(this.value);
+    })
+
+    this.foundation.init()
+    this.foundation.toggle(this.value)
   },
   beforeUnmount () {
-    this.foundation.destroy();
+    this.foundation.destroy()
   },
   watch: {
     'toggleOn': {
-      handler () { this.foundation.refreshToggleData(); },
+      handler () { this.foundation.refreshToggleData() },
       deep: true
     },
     'toggleOff': {
-      handler () { this.foundation.refreshToggleData(); },
+      handler () { this.foundation.refreshToggleData() },
       deep: true
     }
   },
   computed: {
     toggleOnData () {
-      return JSON.stringify(this.toggleOn);
+      return JSON.stringify(this.toggleOn)
     },
     toggleOffData () {
-      return JSON.stringify(this.toggleOff);
+      return JSON.stringify(this.toggleOff)
     }
   }
 }

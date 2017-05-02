@@ -21,9 +21,9 @@
 </template>
 
 <script lang="babel">
-import { MDCCheckboxFoundation } from '@material/checkbox';
+import { MDCCheckboxFoundation } from '@material/checkbox'
 
-const { ANIM_END_EVENT_NAME } = MDCCheckboxFoundation.strings;
+const { ANIM_END_EVENT_NAME } = MDCCheckboxFoundation.strings
 
 export default {
   name: 'mdc-checkbox',
@@ -33,49 +33,51 @@ export default {
       classes: {},
       changeHandlers: [],
       foundation: null
-    };
+    }
   },
   mounted () {
-    let vm = this;
+    let vm = this
+
     this.foundation = new MDCCheckboxFoundation({
       addClass (className) {
-        vm.$set(vm.classes, className, true);
+        vm.$set(vm.classes, className, true)
       },
       removeClass (className) {
-        vm.$delete(vm.classes, className);
+        vm.$delete(vm.classes, className)
       },
       registerChangeHandler (handler) {
-        vm.changeHandlers.push(handler);
+        vm.changeHandlers.push(handler)
       },
       deregisterChangeHandler (handler) {
-        let index = vm.changeHandlers.indexOf(handler);
+        let index = vm.changeHandlers.indexOf(handler)
         if (index >= 0) {
           vm.changeHandlers.splice(index, 1)
         }
       },
       registerAnimationEndHandler (handler) {
-        vm.$refs.root.addEventListener(ANIM_END_EVENT_NAME, handler);
+        vm.$refs.root.addEventListener(ANIM_END_EVENT_NAME, handler)
       },
       deregisterAnimationEndHandler (handler) {
-        vm.$refs.root.removeEventListener(ANIM_END_EVENT_NAME, handler);
+        vm.$refs.root.removeEventListener(ANIM_END_EVENT_NAME, handler)
       },
       getNativeControl () {
-        return vm.$refs.native;
+        return vm.$refs.native
       },
 
       isAttachedToDOM () {
-        return Boolean(vm.$el);
+        return Boolean(vm.$el)
       }
-    });
-    this.foundation.init();
+    })
+
+    this.foundation.init()
   },
   beforeUnmount () {
-    this.foundation.destroy();
+    this.foundation.destroy()
   },
   methods: {
     fireEvent (event) {
-      this.changeHandlers.forEach((h) => h(event));
-      this.$emit('input', event.target.checked);
+      this.changeHandlers.forEach((h) => h(event))
+      this.$emit('input', event.target.checked)
     }
   }
 }

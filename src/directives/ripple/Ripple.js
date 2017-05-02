@@ -8,9 +8,14 @@ export default {
       el.classList.add('mdc-ripple-surface')
     }
 
+    /*
     el.mdcRipple = MDCRipple.attachTo(el, {
       isUnbounded: (typeof binding.modifiers.unbounded !== 'undefined') ? binding.modifiers.unbounded : false
     })
+    */
+
+    el.mdcRipple = new MDCRipple(el)
+    el.mdcRipple.unbounded = (typeof binding.modifiers.unbounded !== 'undefined') ? binding.modifiers.unbounded : false
   },
   unbind (el, binding, vnode, oldVnode) {
     if (!el.mdcRipple) {

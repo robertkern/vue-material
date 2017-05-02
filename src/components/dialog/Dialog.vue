@@ -22,10 +22,10 @@ export default {
   },
   methods: {
     open () {
-      this.foundation.open();
+      this.foundation.open()
     },
     close () {
-      this.foundation.close();
+      this.foundation.close()
     },
     getChildWithTag (tagName) {
       if (this.$children) {
@@ -127,7 +127,7 @@ export default {
 
     let backdropVm = createElement('div', {
       class: {
-        'mdc-dialog__backdrop': true,
+        'mdc-dialog__backdrop': true
       }
     })
 
