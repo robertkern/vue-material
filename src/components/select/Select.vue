@@ -28,6 +28,9 @@ export default {
       default: 0
     }
   },
+  watch: {
+    value: 'updateSelectedOption'
+  },
   mounted () {
     let vm = this
 
@@ -134,16 +137,21 @@ export default {
 
     // Check for initial selection
     if (vm.value.length > 0) {
-      // Find the item index
-      let index = vm.optionItemElements.findIndex(el => el.id === vm.value)
-
-      if (index >= 0) {
-        vm.foundation.setSelectedIndex(index)
-      }
+      vm.updateSelectedOption(vm.value)
     }
   },
   beforeUnmount () {
     this.foundation.destroy()
+  },
+  methods: {
+    updateSelectedOption (id) {
+      // Find the item index
+      let index = this.optionItemElements.findIndex(el => el.id === id)
+
+      if (index >= 0) {
+        this.foundation.setSelectedIndex(index)
+      }
+    }
   },
   computed: {
     optionListNode () {

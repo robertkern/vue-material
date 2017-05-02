@@ -11,6 +11,35 @@ import '@robertkern/vue-material.css'
 Vue.use(VueMdc)
 ```
 
+I'm recommending using the `@material` sass files so you can customize the colors.
+In your own sass file you'll need to import the `@material` styles like the following.
+You can choose to import fewer if you're not planning to use all components.
+
+```
+# Define your theme colors:
+$mdc-theme-primary: #651fff;
+$mdc-theme-accent: #2962ff;
+
+@import "@material/button/mdc-button.scss";
+@import "@material/card/mdc-card.scss";
+@import "@material/checkbox/mdc-checkbox.scss";
+@import "@material/dialog/mdc-dialog.scss";
+@import "@material/drawer/mdc-drawer.scss";
+@import "@material/form-field/mdc-form-field.scss";
+@import "@material/icon-toggle/mdc-icon-toggle.scss";
+@import "@material/layout-grid/mdc-layout-grid.scss";
+@import "@material/list/mdc-list.scss";
+@import "@material/menu/mdc-menu.scss";
+@import "@material/radio/mdc-radio.scss";
+@import "@material/ripple/mdc-ripple.scss";
+@import "@material/select/mdc-select.scss";
+@import "@material/snackbar/mdc-snackbar.scss";
+@import "@material/textfield/mdc-textfield.scss";
+@import "@material/theme/mdc-theme.scss";
+@import "@material/toolbar/mdc-toolbar.scss";
+@import "@material/typography/mdc-typography.scss";
+```
+
 # Demo
 
 To try out the demo, do the following:

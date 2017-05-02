@@ -1,6 +1,6 @@
 {
   "name": "@robertkern/vue-material",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "Material Design Components for Vue",
   "author": "Robert Kern <me@robertkern.com>",
   "license": "MIT",
@@ -15,12 +15,11 @@
     "sass"
   ],
   "main": "./dist/vue-material.js",
-  "module": "./src/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "build:babel": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:watch": "node build/build.js --watch",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",

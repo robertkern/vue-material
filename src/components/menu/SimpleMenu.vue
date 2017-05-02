@@ -140,8 +140,6 @@ export default {
         return vm.menuItemElements.indexOf(document.activeElement)
       },
       focusItemAtIndex (index) {
-        console.log('focusItemAtIndex', index)
-        console.log('vm.menuItemElements', vm.menuItemElements)
         vm.menuItemElements[index].focus()
       },
       isRtl () {
