@@ -1,6 +1,6 @@
 {
   "name": "@robertkern/vue-material",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Material Design Components for Vue",
   "author": "Robert Kern <me@robertkern.com>",
   "license": "MIT",
@@ -124,7 +124,7 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-],
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/robertkern/vue-material.git"
