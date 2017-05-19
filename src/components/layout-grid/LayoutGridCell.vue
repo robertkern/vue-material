@@ -31,6 +31,10 @@ export default {
       type: String,
       required: false,
       validator: validateStringNumber
+    },
+    align: {
+      type: String,
+      required: false
     }
   },
   computed: {
@@ -49,6 +53,10 @@ export default {
 
       if (this.order) {
         classes[`mdc-layout-grid__cell--order-${this.order}`] = true
+      }
+
+      if (this.align) {
+        classes[`mdc-layout-grid__cell--align-bottom-${this.align}`] = true
       }
 
       return classes
