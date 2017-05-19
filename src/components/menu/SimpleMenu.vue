@@ -2,18 +2,7 @@
 <script>
 import { MDCSimpleMenuFoundation } from '@material/menu'
 import { getTransformPropertyName } from '@material/menu/util'
-
-function emit (el, evtType, evtData) {
-  let evt
-  if (typeof CustomEvent === 'function') {
-    evt = new CustomEvent(evtType, {detail: evtData})
-  } else {
-    evt = document.createEvent('CustomEvent')
-    evt.initCustomEvent(evtType, false, false, evtData)
-  }
-
-  el.dispatchEvent(evt)
-}
+import { emitEvent } from '../../util'
 
 export default {
   name: 'mdc-simple-menu',
@@ -116,11 +105,11 @@ export default {
         }
 
         vm.$emit('selected', data)
-        emit(vm.$el, 'MDCSimpleMenu:selected', data)
+        emitEvent(vm.$el, 'MDCSimpleMenu:selected', data)
       },
       notifyCancel () {
         vm.$emit('cancel')
-        emit(vm.$el, 'MDCSimpleMenu:cancel')
+        emitEvent(vm.$el, 'MDCSimpleMenu:cancel')
       },
       saveFocus () {
         vm.previousFocus = document.activeElement
