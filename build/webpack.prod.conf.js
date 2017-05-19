@@ -9,13 +9,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-console.log('process.argv', process.argv)
-// console.log('process.env', process.env)
 var watch = process.argv.filter((arg) => {
   return arg === '--watch'
 }).length > 0
-
-console.log('watch', watch)
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
