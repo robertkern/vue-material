@@ -1,4 +1,11 @@
+import VueMaterialRipple from '../../../util/ripple'
+
 export default {
+  data () {
+    return {
+      classes: {}
+    }
+  },
   props: {
     tag: {
       type: String,
@@ -41,6 +48,20 @@ export default {
       default: false
     }
   },
+  mounted () {
+    let vm = this
+
+    vm.ripple = new VueMaterialRipple(vm, {
+      addClass (className) {
+        vm.$set(vm.classes, className, true)
+      },
+      removeClass (className) {
+        vm.$delete(vm.classes, className)
+      }
+    })
+
+    vm.ripple.init()
+  },
   render (createElement) {
     let vm = this
     let data = {
@@ -51,7 +72,8 @@ export default {
         'mdc-button--compact': vm.compact,
         'mdc-button--primary': vm.primary,
         'mdc-button--accent': vm.accent,
-        'mdc-button--theme-dark': vm.dark
+        'mdc-button--theme-dark': vm.dark,
+        ...vm.classes
       },
       props: {
         disabled: vm.disabled
@@ -60,12 +82,7 @@ export default {
         click () {
           vm.$emit('click')
         }
-      },
-      directives: [
-        {
-          name: 'mdc-ripple'
-        }
-      ]
+      }
     }
 
     return createElement(vm.tag, data, vm.$slots.default)

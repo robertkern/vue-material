@@ -45,9 +45,11 @@ export default {
       on: {
         focus (event) {
           vm.$parent.$emit('inputFocus', event)
+          vm.$emit('focus', event)
         },
         blur (event) {
           vm.$parent.$emit('inputBlur', event)
+          vm.$emit('blur', event)
         },
         input (event) {
           vm.$parent.$emit('inputInput', event)
@@ -55,6 +57,7 @@ export default {
         },
         keydown (event) {
           vm.$parent.$emit('inputKeydown', event)
+          vm.$emit('keydown', event)
         }
       }
     }

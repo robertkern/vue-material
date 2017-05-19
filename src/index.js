@@ -12,6 +12,7 @@ import * as MdcMenu from './components/menu'
 import * as MdcRadio from './components/radio'
 import * as MdcSelect from './components/select'
 import * as MdcSnackbar from './components/snackbar'
+import * as MdcTabs from './components/tabs'
 import * as MdcTextfield from './components/textfield'
 import * as MdcToolbar from './components/toolbar'
 import * as MdcTypography from './components/typography'
@@ -33,6 +34,7 @@ const components = [
   MdcRadio,
   MdcSelect,
   MdcSnackbar,
+  MdcTabs,
   MdcTextfield,
   MdcToolbar,
   MdcTypography

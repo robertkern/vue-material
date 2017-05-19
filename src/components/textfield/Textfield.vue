@@ -237,7 +237,7 @@ export default {
       }
     }
 
-    return createElement(this.tag, data, this.$slots.default)
+    return createElement(vm.tag, data, vm.$slots.default)
   }
 }
 </script>
