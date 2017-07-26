@@ -5,9 +5,13 @@ USER vuematerial
 
 WORKDIR /app
 
+COPY src /app/src
+COPY build /app/build
+COPY config /app/config
+COPY test /app/test
 COPY package.json /app
-#RUN npm install
+COPY .postcssrc.js /app
 
 EXPOSE 8080
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "build:watch"]

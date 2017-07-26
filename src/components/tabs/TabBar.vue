@@ -169,7 +169,6 @@ export default {
     return createElement('nav', data, [vm.$slots.default, indicatorEl])
   }
 }
-
 </script>
 
 <style lang="scss">

@@ -205,7 +205,6 @@ export default {
     return createElement(vm.tag, data, [selectedTextEl, menuEl])
   }
 }
-
 </script>
 
 <style lang="scss">

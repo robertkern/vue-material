@@ -1,16 +1,15 @@
 <script>
-import { MDCDialogFoundation } from '@material/dialog'
+import { MDCDialogFoundation, util } from '@material/dialog'
 
 export default {
   name: 'mdc-dialog',
   data () {
     return {
       foundation: null,
+      focusTrap: null,
       classes: [],
       surfaceInteractionHandlers: [],
-      styles: {
-        visibility: 'hidden'
-      }
+      styles: {}
     }
   },
   props: {
@@ -27,10 +26,10 @@ export default {
     close () {
       this.foundation.close()
     },
-    getChildWithTag (tagName) {
-      if (this.$children) {
-        let el = Array.filter(this.$children, (vm) => {
-          return vm.$el.nodeName.toLowerCase() === tagName.toLowerCase()
+    getChildWithClass (vm, className) {
+      if (vm.$children) {
+        let el = Array.filter(vm.$children, (childVm) => {
+          return childVm.$el.className.indexOf(className) >= 0
         })
 
         return (el.length > 0) ? el[0] : null
@@ -39,10 +38,29 @@ export default {
       return null
     }
   },
+  computed: {
+    isOpen () {
+      return this.foundation.isOpen()
+    }
+  },
   mounted () {
     let vm = this
 
-    this.foundation = new MDCDialogFoundation({
+    // Prepare the focus trap with accept button in-focus
+    let footer = vm.getChildWithClass(vm, 'mdc-dialog__footer')
+    let acceptBtnEl = null
+
+    if (footer) {
+      let acceptBtn = vm.getChildWithClass(footer, MDCDialogFoundation.cssClasses.ACCEPT_BTN)
+
+      if (acceptBtn) {
+        acceptBtnEl = acceptBtn.$el
+      }
+    }
+
+    vm.focusTrap = util.createFocusTrapInstance(vm.$refs.surface, acceptBtnEl)
+
+    vm.foundation = new MDCDialogFoundation({
       addClass (className) {
         vm.$set(vm.classes, className, true)
       },
@@ -89,10 +107,25 @@ export default {
       },
       notifyCancel () {
         vm.$emit('cancel')
+      },
+      isDialog (el) {
+        return el === vm.$refs.surface
+      },
+      trapFocusOnSurface () {
+        vm.focusTrap.activate()
+      },
+      untrapFocusOnSurface () {
+        vm.focusTrap.deactivate()
+      },
+      registerTransitionEndHandler (handler) {
+        vm.$refs.surface.addEventListener('transitionend', handler)
+      },
+      deregisterTransitionEndHandler (handler) {
+        vm.$refs.surface.removeEventListener('transitionend', handler)
       }
     })
 
-    this.foundation.init()
+    vm.foundation.init()
   },
   beforeUnmount () {
     this.foundation.destroy()
@@ -101,7 +134,7 @@ export default {
     let vm = this
     let data = {
       class: {
-        'mdc-dialog': true,
+        [MDCDialogFoundation.cssClasses.ROOT]: true,
         ...vm.classes
       },
       attrs: {
@@ -112,7 +145,7 @@ export default {
 
     let surfaceVm = createElement('div', {
       class: {
-        'mdc-dialog__surface': true
+        'mdc-dialog__surface': true // not defined in constants for some reason
       },
       on: {
         click (event) {
@@ -122,12 +155,13 @@ export default {
             }
           })
         }
-      }
+      },
+      ref: 'surface'
     }, vm.$slots.default)
 
     let backdropVm = createElement('div', {
       class: {
-        'mdc-dialog__backdrop': true
+        [MDCDialogFoundation.cssClasses.BACKDROP]: true
       }
     })
 

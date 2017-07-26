@@ -208,7 +208,6 @@ export default {
     return createElement('div', data, [listEl])
   }
 }
-
 </script>
 
 <style lang="scss">

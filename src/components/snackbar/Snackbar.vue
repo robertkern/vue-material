@@ -129,7 +129,6 @@ export default {
     return createElement('div', data, [textEl, actionWrapperEl])
   }
 }
-
 </script>
 
 <style lang="scss">

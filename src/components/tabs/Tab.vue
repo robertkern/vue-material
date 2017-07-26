@@ -113,5 +113,4 @@ export default {
     return createElement('a', data, vm.$slots.default)
   }
 }
-
 </script>

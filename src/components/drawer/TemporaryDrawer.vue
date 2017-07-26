@@ -38,6 +38,12 @@ export default {
       hasClass (className) {
         return Boolean(vm.classes[className]) || (vm.$el && vm.$el.classList.contains(className))
       },
+      addBodyClass (className) {
+        document.body.classList.add(className)
+      },
+      removeBodyClass (className) {
+        document.body.classList.remove(className)
+      },
       hasNecessaryDom () {
         return Boolean(vm.$refs.drawer)
       },
@@ -83,9 +89,17 @@ export default {
       saveElementTabState: (el) => util.saveElementTabState(el),
       restoreElementTabState: (el) => util.restoreElementTabState(el),
       makeElementUntabbable: (el) => el.setAttribute('tabindex', -1),
+      notifyOpen () {
+        vm.$emit('open')
+      },
+      notifyClose () {
+        vm.$emit('close')
+      },
       isRtl () {
-        /* global getComputedStyle */
         return getComputedStyle(vm.$el).getPropertyValue('direction') === 'rtl'
+      },
+      isDrawer (el) {
+        return el === vm.$refs.drawer
       }
     })
 
@@ -103,7 +117,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss">

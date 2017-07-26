@@ -1,4 +1,6 @@
 <script>
+import { MDCDialogFoundation } from '@material/dialog'
+
 export default {
   name: 'mdc-dialog-footer-button',
   props: {
@@ -59,8 +61,8 @@ export default {
     let data = {
       class: {
         'mdc-dialog__footer__button': true,
-        'mdc-dialog__footer__button--cancel': this.cancel,
-        'mdc-dialog__footer__button--accept': this.accept
+        [MDCDialogFoundation.cssClasses.CANCEL_BTN]: this.cancel,
+        [MDCDialogFoundation.cssClasses.ACCEPT_BTN]: this.accept
       },
       props: {
         tag: this.tag,
