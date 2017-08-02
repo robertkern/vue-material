@@ -86,6 +86,14 @@ export default {
       this.foundation.setBuffer(newBuffer)
     }
   },
+  methods: {
+    open () {
+      this.foundation.open()
+    },
+    close () {
+      this.foundation.close()
+    }
+  },
   render (createElement) {
     let vm = this
     let data = {
