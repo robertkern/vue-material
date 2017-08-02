@@ -78,10 +78,10 @@ export default {
       deregisterInteractionHandler (type, handler) {
         vm.$el.removeEventListener(type, handler)
       },
-      registerDocumentClickHandler (handler) {
+      registerBodyClickHandler (handler) {
         document.addEventListener('click', handler)
       },
-      deregisterDocumentClickHandler (handler) {
+      deregisterBodyClickHandler (handler) {
         document.removeEventListener('click', handler)
       },
       getYParamsForItemAtIndex (index) {
@@ -154,10 +154,10 @@ export default {
     this.foundation.destroy()
   },
   methods: {
-    open (options) {
+    show (options) {
       this.foundation.open(options)
     },
-    close () {
+    hide () {
       this.foundation.close()
     }
   },

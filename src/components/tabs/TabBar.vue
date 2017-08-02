@@ -35,6 +35,11 @@ export default {
   mounted () {
     let vm = this
 
+    // Check if this tab-bar is within a scroller
+    if (vm.$parent.$el.classList.contains('mdc-tab-bar-scroller')) {
+      vm.$set(vm.classes, 'mdc-tab-bar-scroller__scroll-frame__tabs', true)
+    }
+
     vm.foundation = new MDCTabBarFoundation({
       addClass (className) {
         vm.$set(vm.classes, className, true)
@@ -79,6 +84,9 @@ export default {
         // Returns number of tabs in MDC Tabs instance.
         return vm.tabs.length
       },
+      getActiveTab () {
+        return vm.activeTab
+      },
       isTabActiveAtIndex (index) {
         // Returns true if tab at index is active.
         return vm.tabs[index].isActive
@@ -116,21 +124,26 @@ export default {
   },
   methods: {
     getTabs () {
-      return this.getChildrenWithClass('mdc-tab')
+      return this.getChildrenWithClass(this, 'mdc-tab')
     },
     getTabAtIndex (index) {
       return this.tabs[index]
     },
-    getChildrenWithClass (className) {
-      if (this.$children) {
-        let el = Array.filter(this.$children, (vm) => {
-          return vm.$el.className.indexOf(className) >= 0
+    getChildWithClass (vm, className) {
+      let els = this.getChildrenWithClass(vm, className)
+
+      return (els.length > 0) ? els[0] : null
+    },
+    getChildrenWithClass (vm, className) {
+      if (vm.$children) {
+        let els = Array.filter(vm.$children, (childVm) => {
+          return childVm.$el.className.indexOf(className) >= 0
         })
 
-        return el
+        return els
       }
 
-      return null
+      return []
     },
     onTabSelected ({detail}) {
       const { tab } = detail

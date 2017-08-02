@@ -1,6 +1,6 @@
 {
   "name": "@robertkern/vue-material",
-  "version": "0.0.7",
+  "version": "0.0.11",
   "description": "Material Design Components for Vue",
   "author": "Robert Kern <me@robertkern.com>",
   "license": "MIT",
@@ -30,14 +30,16 @@
     "vue": "^2.4.2"
   },
   "dependencies": {
-    "@material/button": "^0.3.10",
+    "@material/button": "0.3.10",
     "@material/card": "0.2.5",
     "@material/checkbox": "0.4.1",
     "@material/dialog": "0.3.4",
     "@material/drawer": "0.5.3",
+    "@material/fab": "0.3.12",
     "@material/form-field": "0.2.10",
     "@material/icon-toggle": "0.1.15",
     "@material/layout-grid": "0.4.1",
+    "@material/linear-progress": "^0.1.5",
     "@material/list": "0.2.13",
     "@material/menu": "0.4.2",
     "@material/radio": "0.2.8",

@@ -1,1 +1,8 @@
+.npmrc
 !lib/*
+build/
+config/
+test/
+Dockerfile
+dev.sh
+*.tgz

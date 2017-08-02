@@ -4,9 +4,11 @@ import * as MdcCard from './components/card'
 import * as MdcCheckbox from './components/checkbox'
 import * as MdcDialog from './components/dialog'
 import * as MdcDrawer from './components/drawer'
+import * as MdcFab from './components/fab'
 import * as MdcFormField from './components/form-field'
 import * as MdcIconToggle from './components/icon-toggle'
 import * as MdcLayoutGrid from './components/layout-grid'
+import * as MdcLinearProgress from './components/linear-progress'
 import * as MdcList from './components/list'
 import * as MdcMenu from './components/menu'
 import * as MdcRadio from './components/radio'
@@ -26,9 +28,11 @@ const components = [
   MdcCheckbox,
   MdcDialog,
   MdcDrawer,
+  MdcFab,
   MdcFormField,
   MdcIconToggle,
   MdcLayoutGrid,
+  MdcLinearProgress,
   MdcList,
   MdcMenu,
   MdcRadio,
@@ -67,6 +71,7 @@ export default {
   MdcCheckbox,
   MdcDialog,
   MdcDrawer,
+  MdcFab,
   MdcFormField,
   MdcIconToggle,
   MdcLayoutGrid,

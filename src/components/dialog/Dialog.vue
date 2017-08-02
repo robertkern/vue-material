@@ -26,6 +26,9 @@ export default {
     close () {
       this.foundation.close()
     },
+    isOpen () {
+      return this.foundation.isOpen()
+    },
     getChildWithClass (vm, className) {
       if (vm.$children) {
         let el = Array.filter(vm.$children, (childVm) => {
@@ -36,11 +39,6 @@ export default {
       }
 
       return null
-    }
-  },
-  computed: {
-    isOpen () {
-      return this.foundation.isOpen()
     }
   },
   mounted () {

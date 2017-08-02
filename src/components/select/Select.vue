@@ -87,7 +87,7 @@ export default {
         return vm.$refs.menu.$el.offsetHeight
       },
       openMenu (focusIndex) {
-        return vm.$refs.menu.open({ focusIndex })
+        return vm.$refs.menu.show({ focusIndex })
       },
       isMenuOpen () {
         return vm.$refs.menu.isOpen
@@ -96,28 +96,28 @@ export default {
         vm.selectedText = selectedTextContent
       },
       getNumberOfOptions () {
-        return vm.optionItemElements.length
+        return vm.options.length
       },
       getTextForOptionAtIndex (index) {
-        return vm.optionItemElements[index].textContent
+        return vm.options[index].textContent
       },
       getValueForOptionAtIndex (index) {
-        if (vm.optionItemElements[index].id) {
-          return vm.optionItemElements[index].id
-        } else if (vm.optionItemElements[index].value) {
-          return vm.optionItemElements[index].value
+        if (vm.options[index].id) {
+          return vm.options[index].id
+        } else if (vm.options[index].value) {
+          return vm.options[index].value
         }
 
-        return vm.optionItemElements[index].textContent
+        return vm.options[index].textContent
       },
       setAttrForOptionAtIndex (index, attr, value) {
-        return vm.optionItemElements[index].setAttribute(attr, value)
+        return vm.options[index].setAttribute(attr, value)
       },
       rmAttrForOptionAtIndex (index, attr, value) {
-        return vm.optionItemElements[index].removeAttribute(attr)
+        return vm.options[index].removeAttribute(attr)
       },
       getOffsetTopForOptionAtIndex (index) {
-        return vm.optionItemElements[index].offsetTop
+        return vm.options[index].offsetTop
       },
       registerMenuInteractionHandler (type, handler) {
         vm.$refs.menu.$el.addEventListener(type, handler)
@@ -146,7 +146,7 @@ export default {
   methods: {
     updateSelectedOption (id) {
       // Find the item index
-      let index = this.optionItemElements.findIndex(el => el.id === id)
+      let index = this.options.findIndex(el => el.id === id)
 
       if (index >= 0) {
         this.foundation.setSelectedIndex(index)
@@ -154,22 +154,8 @@ export default {
     }
   },
   computed: {
-    optionListNode () {
-      let optionListNode = this.$refs.menu.$children.filter((child) => {
-        return child.$el.classList.contains('mdc-list')
-      })
-
-      return optionListNode[0]
-    },
-    optionItems () {
-      return this.optionListNode.$children.filter((child) => {
-        return child.$el.classList.contains('mdc-list-item') && child.role === 'option'
-      })
-    },
-    optionItemElements () {
-      return this.optionItems.map((vnode) => {
-        return vnode.$el
-      })
+    options () {
+      return this.$refs.menu.menuItemElements
     }
   },
   render (createElement) {
@@ -192,6 +178,7 @@ export default {
       }
     }, vm.selectedText)
 
+    // let menuEl = createElement('mdc-simple-menu', {
     let menuEl = createElement('mdc-simple-menu', {
       class: {
         'mdc-select__menu': true

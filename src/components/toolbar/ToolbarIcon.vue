@@ -11,7 +11,8 @@ export default {
   render (createElement) {
     let data = {
       class: {
-        'mdc-toolbar__icon': true
+        'mdc-toolbar__icon': true,
+        'material-icons': true
       },
       on: this.$listeners
     }
