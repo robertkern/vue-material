@@ -12,7 +12,9 @@ export default {
         'mdc-simple-menu': true
       },
       foundation: null,
-      previousFocus: null
+      previousFocus: null,
+      search: '',
+      searchTimer: null
     }
   },
   props: {
@@ -155,10 +157,26 @@ export default {
   },
   methods: {
     show (options) {
+      this.search = ''
       this.foundation.open(options)
     },
     hide () {
       this.foundation.close()
+    },
+    searchOptions (str) {
+      /**
+       * This is a simple attempt at providing "HTML Select" type keyboard filtering
+       * in a select menu. Currently works on any mdc-simple-menu but should probably
+       * be changed to work only on mdc-select.
+       */
+      let lowerCaseStr = str.toLowerCase()
+      let matches = this.menuItemElements.filter((el) => {
+        return el.textContent.toLowerCase().startsWith(lowerCaseStr)
+      })
+
+      if (matches.length > 0) {
+        matches[0].focus()
+      }
     }
   },
   computed: {
@@ -191,6 +209,23 @@ export default {
       },
       attrs: {
         tabindex: vm.tabindex
+      },
+      on: {
+        keyup (key) {
+          vm.search += key.key
+          vm.searchOptions(vm.search)
+
+          // Another key pressed, clear the existing timer
+          if (vm.searchTimer) {
+            clearTimeout(vm.searchTimer)
+            vm.searchTimer = null
+          }
+
+          vm.searchTimer = setTimeout(() => {
+            // Clear the current search string
+            vm.search = ''
+          }, 500)
+        }
       }
     }
 

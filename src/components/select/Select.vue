@@ -178,7 +178,6 @@ export default {
       }
     }, vm.selectedText)
 
-    // let menuEl = createElement('mdc-simple-menu', {
     let menuEl = createElement('mdc-simple-menu', {
       class: {
         'mdc-select__menu': true
