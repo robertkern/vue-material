@@ -86,7 +86,7 @@ export default {
   render (createElement) {
     let vm = this
 
-    if (vm.$router) {
+    if (vm.to !== '' && vm.$router) {
       // Handle router links
       var router = vm.$router
       var current = vm.$route
