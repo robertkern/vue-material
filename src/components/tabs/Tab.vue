@@ -107,7 +107,8 @@ export default {
       class: {
         'mdc-tab': true,
         ...vm.classes
-      }
+      },
+      on: vm.$listeners
     }
 
     return createElement('a', data, vm.$slots.default)

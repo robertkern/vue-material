@@ -48,7 +48,8 @@ export default {
         role: vm.role,
         tabindex: vm.tabindex,
         ...vm.getAdditionalAttributes()
-      }
+      },
+      on: vm.$listeners
     }
 
     return createElement(vm.tag, data, vm.$slots.default)
