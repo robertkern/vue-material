@@ -77,6 +77,12 @@ export default {
 
     vm.ripple.init()
   },
+  methods: {
+    getAdditionalClasses () {
+      // Useful for extending the list e.g., drawer nav
+      return {}
+    }
+  },
   render (createElement) {
     let vm = this
 
@@ -96,7 +102,8 @@ export default {
         'mdc-button--primary': vm.primary,
         'mdc-button--accent': vm.accent,
         'mdc-button--theme-dark': vm.dark,
-        ...vm.classes
+        ...vm.classes,
+        ...vm.getAdditionalClasses()
       },
       props: {
         disabled: vm.disabled

@@ -1,61 +1,24 @@
 <script>
+import ButtonMixin from '../../button/mixins/button'
+
 export default {
   name: 'mdc-card-action-button',
+  mixins: [
+    ButtonMixin
+  ],
   props: {
-    tag: {
-      type: String,
-      required: false,
-      default: 'button'
-    },
-    dense: {
+    compact: {
       type: Boolean,
       required: false,
-      default: false
-    },
-    raised: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    primary: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    accent: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      required: false,
-      default: false
+      default: true
     }
   },
-  render (createElement) {
-    let data = {
-      class: {
+  methods: {
+    getAdditionalClasses () {
+      return {
         'mdc-card__action': true
-      },
-      props: {
-        tag: this.tag,
-        dense: this.dense,
-        raised: this.raised,
-        primary: this.primary,
-        accent: this.accent,
-        disabled: this.disabled,
-        dark: this.dark,
-        compact: true
       }
     }
-
-    return createElement('mdc-button', data, this.$slots.default)
   }
 }
 </script>
