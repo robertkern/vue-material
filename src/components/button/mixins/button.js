@@ -105,7 +105,7 @@ export default {
         ...vm.classes,
         ...vm.getAdditionalClasses()
       },
-      props: {
+      attrs: {
         disabled: vm.disabled
       },
       on: {
@@ -127,7 +127,8 @@ export default {
     if (vm.tag === 'a' && href && href.length > 0) {
       // Set the href with the to route value
       data.attrs = {
-        href
+        href,
+        ...data.attrs
       }
     }
 
