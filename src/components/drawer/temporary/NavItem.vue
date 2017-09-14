@@ -21,7 +21,6 @@ export default {
   methods: {
     getAdditionalClasses () {
       return {
-        'mdc-temporary-drawer__content': true,
         'mdc-temporary-drawer--selected': this.selected
       }
     }

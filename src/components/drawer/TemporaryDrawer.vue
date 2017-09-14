@@ -1,13 +1,3 @@
-<template>
-  <aside class="mdc-temporary-drawer mdc-typography" :class="classes">
-    <nav ref="drawer" class="mdc-temporary-drawer__drawer">
-      <slot name="toolbar-spacer"></slot>
-      <slot name="header"></slot>
-      <slot></slot>
-    </nav>
-  </aside>
-</template>
-
 <script>
 import { MDCTemporaryDrawerFoundation, util } from '@material/drawer'
 
@@ -45,7 +35,7 @@ export default {
         document.body.classList.remove(className)
       },
       hasNecessaryDom () {
-        return Boolean(vm.$refs.drawer)
+        return true
       },
       registerInteractionHandler (evt, handler) {
         vm.$el.addEventListener(evt, handler)
@@ -115,6 +105,26 @@ export default {
     close () {
       this.foundation.close()
     }
+  },
+  render (createElement) {
+    let vm = this
+
+    let data = {
+      class: {
+        'mdc-temporary-drawer': true,
+        'mdc-typography': true,
+        ...vm.classes
+      }
+    }
+
+    let drawerEl = createElement('nav', {
+      class: {
+        'mdc-temporary-drawer__drawer': true
+      },
+      ref: 'drawer'
+    }, vm.$slots.default)
+
+    return createElement('aside', data, [drawerEl])
   }
 }
 </script>
