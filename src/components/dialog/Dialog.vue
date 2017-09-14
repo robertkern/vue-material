@@ -30,26 +30,22 @@ export default {
       return this.foundation.isOpen()
     },
     getChildWithClass (vm, className) {
-      let children = this.getChildrenWithClass(vm, className)
+      let els = this.getChildrenWithClass(vm, className)
 
-      if (children.length > 0) {
-        return children[0]
-      }
-
-      return null
+      return (els.length > 0) ? els[0] : null
     },
     getChildrenWithClass (vm, className) {
       if (vm.$children) {
-        let el = Array.filter(vm.$children, (childVm) => {
+        let els = Array.filter(vm.$children, (childVm) => {
           return childVm.$el.className.indexOf(className) >= 0
         })
 
-        return (el.length > 0) ? el : null
+        return els
       }
 
-      return null
+      return []
     }
-  },
+  }
   mounted () {
     let vm = this
 
