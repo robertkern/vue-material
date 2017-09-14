@@ -30,12 +30,21 @@ export default {
       return this.foundation.isOpen()
     },
     getChildWithClass (vm, className) {
+      let children = this.getChildrenWithClass(vm, className)
+
+      if (children.length > 0) {
+        return children[0]
+      }
+
+      return null
+    },
+    getChildrenWithClass (vm, className) {
       if (vm.$children) {
         let el = Array.filter(vm.$children, (childVm) => {
           return childVm.$el.className.indexOf(className) >= 0
         })
 
-        return (el.length > 0) ? el[0] : null
+        return (el.length > 0) ? el : null
       }
 
       return null
@@ -46,6 +55,7 @@ export default {
 
     // Prepare the focus trap with accept button in-focus
     let footer = vm.getChildWithClass(vm, 'mdc-dialog__footer')
+    let footerButtons = []
     let acceptBtnEl = null
 
     if (footer) {
@@ -54,6 +64,8 @@ export default {
       if (acceptBtn) {
         acceptBtnEl = acceptBtn.$el
       }
+
+      footerButtons = vm.getChildrenWithClass(footer, 'mdc-dialog__footer__button')
     }
 
     vm.focusTrap = util.createFocusTrapInstance(vm.$refs.surface, acceptBtnEl)
@@ -114,6 +126,13 @@ export default {
       },
       untrapFocusOnSurface () {
         vm.focusTrap.deactivate()
+      },
+      layoutFooterRipples () {
+        footerButtons.forEach((button) => {
+          if (button.ripple) {
+            button.ripple.layout()
+          }
+        })
       },
       registerTransitionEndHandler (handler) {
         vm.$refs.surface.addEventListener('transitionend', handler)
