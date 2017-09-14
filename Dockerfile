@@ -1,5 +1,7 @@
 FROM node:boron
 
+RUN npm install -g npm-check-updates
+
 RUN adduser --disabled-password --gecos "" vuematerial
 USER vuematerial
 
