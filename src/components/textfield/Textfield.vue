@@ -1,5 +1,6 @@
 <script>
 import { MDCTextfieldFoundation } from '@material/textfield'
+import VueMaterialRipple from '../../util/ripple'
 
 export default {
   name: 'mdc-textfield',
@@ -15,6 +16,11 @@ export default {
       default: false
     },
     fullwidth: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    box: {
       type: Boolean,
       required: false,
       default: false
@@ -116,7 +122,20 @@ export default {
       vm.$set(vm.classes, 'mdc-textfield--multiline', true)
     }
     if (vm.hasNativeInput() && vm.getNativeInput().disabled === true) {
-      this.disabled = true
+      vm.disabled = true
+    }
+
+    if (vm.box) {
+      vm.ripple = new VueMaterialRipple(vm, {
+        addClass (className) {
+          vm.$set(vm.classes, className, true)
+        },
+        removeClass (className) {
+          vm.$delete(vm.classes, className)
+        }
+      })
+
+      vm.ripple.init()
     }
 
     vm.$on('setInitialValue', this.onSetInitialValue)
@@ -231,13 +250,28 @@ export default {
         'mdc-textfield': true,
         'mdc-textfield--multiline': vm.multiline,
         'mdc-textfield--fullwidth': vm.fullwidth,
+        'mdc-textfield--box': vm.box,
         'mdc-textfield--upgraded': vm.upgraded,
         'mdc-textfield--disabled': vm.disabled,
         ...vm.classes
       }
     }
 
-    return createElement(vm.tag, data, vm.$slots.default)
+    let slots = []
+
+    if (vm.box) {
+      let bottomLineEl = createElement('div', {
+        class: {
+          'mdc-textfield__bottom-line': true
+        }
+      })
+
+      slots.push(bottomLineEl)
+    }
+
+    slots.push(vm.$slots.default)
+
+    return createElement(vm.tag, data, slots)
   }
 }
 </script>
