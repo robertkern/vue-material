@@ -8,7 +8,7 @@ export default class VueMaterialRipple {
 
     let foundationOptions = Object.assign({
       browserSupportsCssVars: () => supportsCssVariables(window),
-      isUnbounded: () => false, // todo
+      isUnbounded: () => false,
       isSurfaceActive: () => vm.$el[MATCHES](':active'),
       isSurfaceDisabled: () => vm.$el.disabled,
       addClass: (className) => vm.$el.classList.add(className),
@@ -33,5 +33,9 @@ export default class VueMaterialRipple {
 
   deactivate () {
     this.foundation.deactivate()
+  }
+
+  layout () {
+    this.foundation.layout()
   }
 }
