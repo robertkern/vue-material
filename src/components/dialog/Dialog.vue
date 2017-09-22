@@ -45,7 +45,7 @@ export default {
 
       return []
     }
-  }
+  },
   mounted () {
     let vm = this
 

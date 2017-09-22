@@ -1,3 +1,7 @@
 import MdcButton from './Button'
+import MdcButtonIcon from './Icon'
 
-export { MdcButton }
+export {
+  MdcButton,
+  MdcButtonIcon
+}
