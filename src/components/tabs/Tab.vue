@@ -91,7 +91,7 @@ export default {
     // Set initial active state
     vm.isActive = vm.active
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.ripple.destroy()
     this.foundation.destroy()
   },

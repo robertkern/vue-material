@@ -119,7 +119,7 @@ export default {
 
     vm.foundation.init()
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   methods: {

@@ -75,7 +75,7 @@ export default {
     });
     */
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   methods: {

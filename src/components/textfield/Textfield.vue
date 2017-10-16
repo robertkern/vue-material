@@ -240,7 +240,7 @@ export default {
 
     this.foundation.init()
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   render (createElement) {

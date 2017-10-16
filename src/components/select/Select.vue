@@ -140,7 +140,7 @@ export default {
       vm.updateSelectedOption(vm.value)
     }
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   methods: {

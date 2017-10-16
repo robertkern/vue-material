@@ -62,7 +62,7 @@ export default {
     this.foundation.init()
     this.foundation.setDisabled(this.disabled)
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   methods: {
