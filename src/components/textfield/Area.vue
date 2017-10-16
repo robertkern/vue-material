@@ -1,6 +1,11 @@
 <script>
 export default {
   name: 'mdc-textfield-area',
+  data () {
+    return {
+      val: this.value
+    }
+  },
   props: {
     value: {
       type: [String, Number],
@@ -18,16 +23,28 @@ export default {
       if (oldValue.length === 0) {
         this.$parent.$emit('setInitialValue', newValue)
       }
+
+      this.val = newValue
     },
     disabled (newValue) {
       this.$parent.$emit('toggleDisabled', newValue)
     }
   },
+  created () {
+    // Use slot text as initial value e.g., <textarea>foo</textarea>
+    if (this.$slots.default && this.$slots.default.length > 0 && this.$slots.default[0].text) {
+      this.val = this.$slots.default[0].text
+    }
+  },
   render (createElement) {
     let vm = this
+
     let data = {
       class: {
         'mdc-textfield__input': true
+      },
+      domProps: {
+        value: vm.val
       },
       attrs: {
         disabled: vm.disabled
@@ -43,6 +60,7 @@ export default {
         },
         input (event) {
           vm.$parent.$emit('inputInput', event)
+          vm.val = event.target.value
           vm.$emit('input', event.target.value)
         },
         keydown (event) {
@@ -52,7 +70,7 @@ export default {
       }
     }
 
-    return createElement('textarea', data, [vm.value, this.$slots.default])
+    return createElement('textarea', data)
   }
 }
 </script>

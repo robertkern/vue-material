@@ -1,6 +1,11 @@
 <script>
 export default {
   name: 'mdc-textfield-input',
+  data () {
+    return {
+      val: this.value
+    }
+  },
   props: {
     value: {
       type: [String, Number],
@@ -23,6 +28,8 @@ export default {
       if (oldValue.length === 0) {
         this.$parent.$emit('setInitialValue', newValue)
       }
+
+      this.val = newValue
     },
     disabled (newValue) {
       this.$parent.$emit('toggleDisabled', newValue)
@@ -34,12 +41,11 @@ export default {
       class: {
         'mdc-textfield__input': true
       },
-      props: {
-        value: vm.value
+      domProps: {
+        value: vm.val
       },
       attrs: {
         type: vm.type,
-        value: vm.value,
         disabled: vm.disabled
       },
       on: {
