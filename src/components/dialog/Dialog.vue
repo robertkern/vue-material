@@ -8,7 +8,6 @@ export default {
       foundation: null,
       focusTrap: null,
       classes: [],
-      surfaceInteractionHandlers: [],
       styles: {}
     }
   },
@@ -17,6 +16,14 @@ export default {
       type: String,
       required: false,
       default: 'aside'
+    }
+  },
+  computed: {
+    dialogSurface_ () {
+      return this.$el.querySelector(MDCDialogFoundation.strings.DIALOG_SURFACE_SELECTOR)
+    },
+    acceptButton_ () {
+      return this.$el.querySelector(MDCDialogFoundation.strings.ACCEPT_SELECTOR)
     }
   },
   methods: {
@@ -28,6 +35,12 @@ export default {
     },
     isOpen () {
       return this.foundation.isOpen()
+    },
+    accept (notifyChange = false) {
+      this.foundation.accept(notifyChange)
+    },
+    cancel (notifyChange = false) {
+      this.foundation.cancel(notifyChange)
     },
     getChildWithClass (vm, className) {
       let els = this.getChildrenWithClass(vm, className)
@@ -49,22 +62,8 @@ export default {
   mounted () {
     let vm = this
 
-    // Prepare the focus trap with accept button in-focus
-    let footer = vm.getChildWithClass(vm, 'mdc-dialog__footer')
-    let footerButtons = []
-    let acceptBtnEl = null
-
-    if (footer) {
-      let acceptBtn = vm.getChildWithClass(footer, MDCDialogFoundation.cssClasses.ACCEPT_BTN)
-
-      if (acceptBtn) {
-        acceptBtnEl = acceptBtn.$el
-      }
-
-      footerButtons = vm.getChildrenWithClass(footer, 'mdc-dialog__footer__button')
-    }
-
-    vm.focusTrap = util.createFocusTrapInstance(vm.$refs.surface, acceptBtnEl)
+    let footerButtons = vm.$el.querySelectorAll('.mdc-dialog__footer__button')
+    vm.focusTrap = util.createFocusTrapInstance(vm.dialogSurface_, vm.acceptButton_)
 
     vm.foundation = new MDCDialogFoundation({
       addClass (className) {
@@ -86,21 +85,16 @@ export default {
         return target.classList.contains(className)
       },
       registerInteractionHandler (evt, handler) {
-        vm.$on(evt, handler)
+        vm.$el.addEventListener(evt, handler)
       },
       deregisterInteractionHandler (evt, handler) {
-        vm.$off(evt, handler)
+        vm.$el.removeEventListener(evt, handler)
       },
       registerSurfaceInteractionHandler (evt, handler) {
-        // todo - look at temporary drawer and try using vm.$refs.surface.addEventListener(evt, handler)
-        vm.surfaceInteractionHandlers.push({ evt, handler })
+        vm.dialogSurface_.addEventListener(evt, handler)
       },
       deregisterSurfaceInteractionHandler (evt, handler) {
-        let index = vm.surfaceInteractionHandlers.indexOf({ evt, handler })
-
-        if (index >= 0) {
-          vm.surfaceInteractionHandlers.splice(index, 1)
-        }
+        vm.dialogSurface_.removeEventListener(evt, handler)
       },
       registerDocumentKeydownHandler (handler) {
         document.addEventListener('keydown', handler)
@@ -110,12 +104,14 @@ export default {
       },
       notifyAccept () {
         vm.$emit('accept')
+        vm.$emit(MDCDialogFoundation.strings.ACCEPT_EVENT)
       },
       notifyCancel () {
         vm.$emit('cancel')
+        vm.$emit(MDCDialogFoundation.strings.CANCEL_EVENT)
       },
       isDialog (el) {
-        return el === vm.$refs.surface
+        return vm.dialogSurface_
       },
       trapFocusOnSurface () {
         vm.focusTrap.activate()
@@ -131,16 +127,16 @@ export default {
         })
       },
       registerTransitionEndHandler (handler) {
-        vm.$refs.surface.addEventListener('transitionend', handler)
+        vm.dialogSurface_.addEventListener('transitionend', handler)
       },
       deregisterTransitionEndHandler (handler) {
-        vm.$refs.surface.removeEventListener('transitionend', handler)
+        vm.dialogSurface_.removeEventListener('transitionend', handler)
       }
     })
 
     vm.foundation.init()
   },
-  beforeUnmount () {
+  beforeDestroy () {
     this.foundation.destroy()
   },
   render (createElement) {
@@ -159,17 +155,7 @@ export default {
     let surfaceVm = createElement('div', {
       class: {
         'mdc-dialog__surface': true // not defined in constants for some reason
-      },
-      on: {
-        click (event) {
-          vm.surfaceInteractionHandlers.map((handler) => {
-            if (handler.evt === 'click') {
-              handler.handler(event)
-            }
-          })
-        }
-      },
-      ref: 'surface'
+      }
     }, vm.$slots.default)
 
     let backdropVm = createElement('div', {
