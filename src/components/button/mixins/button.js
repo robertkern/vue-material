@@ -113,7 +113,7 @@ export default {
             }
           }
 
-          vm.$emit('click')
+          vm.$emit('click', e)
         }
       }
     }
