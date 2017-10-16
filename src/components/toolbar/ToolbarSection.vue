@@ -14,6 +14,11 @@ export default {
       validator: function (value) {
         return ['start', 'end', ''].indexOf(value) >= 0
       }
+    },
+    shrinkToFit: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   render (createElement) {
@@ -21,7 +26,8 @@ export default {
       class: {
         'mdc-toolbar__section': true,
         'mdc-toolbar__section--align-start': this.align === 'start',
-        'mdc-toolbar__section--align-end': this.align === 'end'
+        'mdc-toolbar__section--align-end': this.align === 'end',
+        'mdc-toolbar__section--shrink-to-fit': this.shrinkToFit
       }
     }
 

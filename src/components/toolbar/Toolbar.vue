@@ -38,7 +38,8 @@ export default {
   data () {
     return {
       classes: {},
-      foundation: null
+      foundation: null,
+      fixedAdjustElement_: null
     }
   },
   computed: {
@@ -48,8 +49,14 @@ export default {
     titleElement () {
       return this.$el.querySelector(MDCToolbarFoundation.strings.TITLE_SELECTOR)
     },
-    fixedAdjustElement () {
-      return this.getSiblingWithClass('mdc-toolbar-fixed-adjust')
+    fixedAdjustElement: {
+      get () {
+        return this.fixedAdjustElement_
+      },
+      set (value) {
+        this.fixedAdjustElement_ = value
+        this.updateAdjustElementStyles()
+      }
     }
   },
   mounted () {
@@ -111,12 +118,8 @@ export default {
     vm.foundation.init()
   },
   methods: {
-    getSiblingWithClass (className) {
-      if (this.$el.nextElementSibling) {
-        return (this.$el.nextElementSibling.className.indexOf(className) >= 0) ? this.$el.nextElementSibling : null
-      }
-
-      return null
+    updateAdjustElementStyles () {
+      this.foundation.updateAdjustElementStyles()
     }
   },
   render (createElement) {
