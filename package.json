@@ -1,6 +1,6 @@
 {
   "name": "@robertkern/vue-material",
-  "version": "0.0.25",
+  "version": "0.1.4",
   "description": "Material Design Components for Vue",
   "author": "Robert Kern <me@robertkern.com>",
   "license": "MIT",
